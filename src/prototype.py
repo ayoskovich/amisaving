@@ -11,6 +11,8 @@ import sympy
 from sympy import symbols
 from sympy import lambdify
 from sympy import latex
+from sympy import solve
+from sympy import Eq
 
 def build_cost(slope, inter=0):
     """ Create the total cost curve.
@@ -29,6 +31,9 @@ variable = build_cost(slope=4)
 # In[ ]:
 
 
+# Get where they're equal
+EQ = int(solve(Eq(fixed, variable))[0])
+
 lam_a = lambdify(x, fixed, modules=['numpy'])
 lam_b = lambdify(x, variable, modules=['numpy'])
 
@@ -38,6 +43,9 @@ y_vals2 = lam_b(x_vals)
 
 plt.plot(x_vals, y_vals1, label=latex(fixed));
 plt.plot(x_vals, y_vals2, label=latex(variable));
+
+plt.axvline(x=EQ);
+
 plt.title('Cost curves');
 plt.legend();
 
