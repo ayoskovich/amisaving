@@ -14,6 +14,8 @@ from sympy import latex
 from sympy import solve
 from sympy import Eq
 
+x = symbols('x');
+
 def build_cost(slope, inter=0):
     """ Create the total cost curve.
     
@@ -24,68 +26,44 @@ def build_cost(slope, inter=0):
     return COST.subs(m, slope).subs(b, inter)
 
 
-fixed = build_cost(slope=2, inter=24)
-variable = build_cost(slope=4)
-
-
 # In[ ]:
 
 
+fixed = build_cost(slope=2, inter=24)
+variable = build_cost(slope=4)
+
 # Get where they're equal
 EQ = int(solve(Eq(fixed, variable))[0])
+FREQ = 'days'
+
+print(f'The cost curves are equal at {EQ}')
+print(f'With a use each {FREQ}, it would take {EQ} {FREQ} in order to make money.')
 
 lam_a = lambdify(x, fixed, modules=['numpy'])
 lam_b = lambdify(x, variable, modules=['numpy'])
 
-x_vals = np.linspace(0, 20, 100)
+BUF = 20  # Before and after equal
+x_vals = np.linspace(EQ-BUF, EQ+BUF, 100)
 y_vals1 = lam_a(x_vals)
 y_vals2 = lam_b(x_vals)
 
-plt.plot(x_vals, y_vals1, label=latex(fixed));
-plt.plot(x_vals, y_vals2, label=latex(variable));
+plt.plot(x_vals, y_vals1, label='With equipment: '  + latex(fixed));
+plt.plot(x_vals, y_vals2, label='Buying each day: ' + latex(variable));
 
-plt.axvline(x=EQ);
+plt.axvline(x=EQ, color='green');
 
 plt.title('Cost curves');
 plt.legend();
 
 
-# In[ ]:
-
-
-a = pd.DataFrame({
-    'name':['anthony', 'bob', 'vale'],
-    'age':[23, 100, 22]
-})
-b = pd.DataFrame({
-    'name':['bob'],
-    'food':['tacos']
-})
-
-
-# In[ ]:
-
-
-a
-
-
-# In[ ]:
-
-
-b
-
-
-# In[ ]:
-
-
-pd.merge(a, b, how='outer', on='name')
-
-
-# In[ ]:
-
-
-SELECT a.*, b.* 
-FROM names AS a 
-LEFT JOIN foods AS b 
-ON a.name = UPCASE(b.name)
-
+# ### User input
+# 
+# - Frequency units (day, week, month)
+# - Frequency of use (number: 1, 2, 3) times per frequency unit
+# - Cost per unit (no capital)
+# - Cost per unit (with capital)
+# 
+# ### Output
+# 
+# - How many frequency units until they're making money?
+# - \[Yes / No\] will you save money if you use this once a day for 500 days?
