@@ -1,2 +1,4 @@
 *.swp
 .ipynb_checkpoints/
+sympy.ipynb
+src/sympy.py
