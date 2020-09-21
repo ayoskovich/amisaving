@@ -14,7 +14,7 @@ from sympy import latex
 from sympy import solve
 from sympy import Eq
 
-%config InlineBackend.figure_format='retina'
+#%config InlineBackend.figure_format='retina'
 
 x = symbols('x');
 
@@ -33,6 +33,7 @@ def convert_title(title):
     use in matplotlib
     """
     return "$" + title + "$"
+
 
 # In[ ]:
 
@@ -64,6 +65,7 @@ plt.title('Cost curves');
 plt.legend();
 plt.gcf().set_figwidth(12);
 plt.gcf().set_figheight(7);
+
 
 # ### User input
 # 
@@ -110,7 +112,9 @@ p.line(x, y2, legend_label="y=10^x^2", line_color="orange", line_dash="4 4")
 # show the results
 show(p)
 
+
 # In[ ]:
+
 
 
 
