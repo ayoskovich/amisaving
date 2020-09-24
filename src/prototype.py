@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[7]:
 
 
 import matplotlib.pyplot as plt
@@ -24,7 +24,7 @@ def build_cost(slope, inter=0):
     Returns a sympy equation.
     """
     m, x, b = symbols('m x b')
-    COST = m*x + b
+    COST = m*x**2 + b
     return COST.subs(m, slope).subs(b, inter)
 
 
@@ -35,7 +35,7 @@ def convert_title(title):
     return "$" + title + "$"
 
 
-# In[ ]:
+# In[8]:
 
 
 fixed = build_cost(slope=2, inter=24)
@@ -79,7 +79,7 @@ plt.gcf().set_figheight(7);
 # - How many frequency units until they're making money?
 # - \[Yes / No\] will you save money if you use this once a day for 500 days?
 
-# In[ ]:
+# In[6]:
 
 
 from bokeh.plotting import figure, output_file, show, output_notebook
