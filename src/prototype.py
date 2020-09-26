@@ -75,6 +75,11 @@ plt.gcf().set_figheight(7);
 
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure, output_notebook, show
+from bokeh.models import Span
+
+output_notebook()
+
+eq_solve = Span(location=EQ, dimension='height', line_width=2)  # Location where lines intersect
 
 source = ColumnDataSource(data=dict(
     x=x_vals,
@@ -82,16 +87,13 @@ source = ColumnDataSource(data=dict(
     y2=y_vals2
 ))
 p = figure(plot_width=400, plot_height=400)
-p.vline_stack(['y1', 'y2'], x='x', source=source)
+
+
+p.line(x='x', y='y1', source=source, color='red', line_width=2)
+p.line(x='x', y='y2', source=source, color='green', line_width=2)
+p.add_layout(eq_solve)
+
 show(p)
-
-
-# In[ ]:
-
-
-x_vals
-y_vals1
-y_vals2
 
 
 # ### User input
@@ -105,46 +107,3 @@ y_vals2
 # 
 # - How many frequency units until they're making money?
 # - \[Yes / No\] will you save money if you use this once a day for 500 days?
-
-# In[ ]:
-
-
-from bokeh.io import output_notebook, show
-from bokeh.plotting import figure
-
-output_notebook()
-
-fruits = ['Apples', 'Pears', 'Nectarines', 'Plums', 'Grapes', 'Strawberries']
-counts = [5, 3, 4, 2, 4, 6]
-
-p = figure(x_range=fruits, plot_height=250, title="Fruit counts",
-           toolbar_location=None, tools="")
-
-p.vbar(x=fruits, top=counts, width=.9)
-show(p)
-
-
-# In[ ]:
-
-
-from bokeh.io import output_file, show
-from bokeh.plotting import figure
-
-output_notebook()
-
-fruits = ['Apples', 'Pears', 'Nectarines', 'Plums', 'Grapes', 'Strawberries']
-counts = [5, 3, 4, 2, 4, 6]
-
-# sorting the bars means sorting the range factors
-sorted_fruits = sorted(fruits, key=lambda x: counts[fruits.index(x)])
-
-p = figure(x_range=sorted_fruits, plot_height=350, title="Fruit Counts",
-           toolbar_location=None, tools="")
-
-p.vbar(x=fruits, top=counts, width=0.9)
-
-p.xgrid.grid_line_color = None
-p.y_range.start = 0
-
-show(p)
-
