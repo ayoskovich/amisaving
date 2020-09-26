@@ -86,8 +86,9 @@ source = ColumnDataSource(data=dict(
     y1=y_vals1,
     y2=y_vals2
 ))
-p = figure(plot_width=400, plot_height=400)
 
+p = figure(plot_width=400, plot_height=400, title="Total Cost", 
+           toolbar_location=None, tools="")
 
 p.line(x='x', y='y1', source=source, color='red', line_width=2)
 p.line(x='x', y='y2', source=source, color='green', line_width=2)
