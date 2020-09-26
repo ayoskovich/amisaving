@@ -24,7 +24,7 @@ def build_cost(slope, inter=0):
     Returns a sympy equation.
     """
     m, x, b = symbols('m x b')
-    COST = m*x**2 + b
+    COST = m*x + b
     return COST.subs(m, slope).subs(b, inter)
 
 
@@ -34,8 +34,15 @@ convert_title = lambda title : "$" + title + "$"
 # In[ ]:
 
 
-fixed = build_cost(slope=2, inter=24)
-variable = build_cost(slope=4)
+FIXED_COST = 24  # Startup costs
+VAR_F = 2        # Variable cost if you go with 
+
+VAR_V = 4        # Cost if total variable
+
+fixed = build_cost(slope=VAR_F, inter=FIXED_COST)
+variable = build_cost(slope=VAR_V)
+
+
 
 # Get where they're equal
 EQ = int(solve(Eq(fixed, variable))[0])
@@ -63,6 +70,30 @@ plt.gcf().set_figwidth(12);
 plt.gcf().set_figheight(7);
 
 
+# In[ ]:
+
+
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure, output_notebook, show
+
+source = ColumnDataSource(data=dict(
+    x=x_vals,
+    y1=y_vals1,
+    y2=y_vals2
+))
+p = figure(plot_width=400, plot_height=400)
+p.vline_stack(['y1', 'y2'], x='x', source=source)
+show(p)
+
+
+# In[ ]:
+
+
+x_vals
+y_vals1
+y_vals2
+
+
 # ### User input
 # 
 # - Frequency units (day, week, month)
@@ -78,39 +109,42 @@ plt.gcf().set_figheight(7);
 # In[ ]:
 
 
-from bokeh.plotting import figure, output_file, show, output_notebook
+from bokeh.io import output_notebook, show
+from bokeh.plotting import figure
 
-# prepare some data
-x = [0.1, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
-y0 = [i**2 for i in x]
-y1 = [10**i for i in x]
-y2 = [10**(i**2) for i in x]
-
-# output to static HTML file
-# output_file("log_lines.html")
 output_notebook()
 
-# create a new plot
-p = figure(
-   tools="pan,box_zoom,reset,save",
-   y_axis_type="log", y_range=[0.001, 10**11], title="log axis example",
-   x_axis_label='sections', y_axis_label='particles'
-)
+fruits = ['Apples', 'Pears', 'Nectarines', 'Plums', 'Grapes', 'Strawberries']
+counts = [5, 3, 4, 2, 4, 6]
 
-# add some renderers
-p.line(x, x, legend_label="y=x")
-p.circle(x, x, legend_label="y=x", fill_color="white", size=8)
-p.line(x, y0, legend_label="y=x^2", line_width=3)
-p.line(x, y1, legend_label="y=10^x", line_color="red")
-p.circle(x, y1, legend_label="y=10^x", fill_color="red", line_color="red", size=6)
-p.line(x, y2, legend_label="y=10^x^2", line_color="orange", line_dash="4 4")
+p = figure(x_range=fruits, plot_height=250, title="Fruit counts",
+           toolbar_location=None, tools="")
 
-# show the results
+p.vbar(x=fruits, top=counts, width=.9)
 show(p)
 
 
 # In[ ]:
 
 
+from bokeh.io import output_file, show
+from bokeh.plotting import figure
 
+output_notebook()
+
+fruits = ['Apples', 'Pears', 'Nectarines', 'Plums', 'Grapes', 'Strawberries']
+counts = [5, 3, 4, 2, 4, 6]
+
+# sorting the bars means sorting the range factors
+sorted_fruits = sorted(fruits, key=lambda x: counts[fruits.index(x)])
+
+p = figure(x_range=sorted_fruits, plot_height=350, title="Fruit Counts",
+           toolbar_location=None, tools="")
+
+p.vbar(x=fruits, top=counts, width=0.9)
+
+p.xgrid.grid_line_color = None
+p.y_range.start = 0
+
+show(p)
 
