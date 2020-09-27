@@ -94,3 +94,38 @@ show(p)
 # 
 # - How many frequency units until they're making money?
 # - \[Yes / No\] will you save money if you use this once a day for 500 days?
+
+# In[ ]:
+
+
+from bokeh.layouts import column
+from bokeh.models import ColumnDataSource, CustomJS, Slider, TextInput
+from bokeh.plotting import Figure, output_file, show
+
+output_notebook()
+
+x = [x*0.005 for x in range(0, 200)]
+y = x
+
+source = ColumnDataSource(data=dict(x=x, y=y))
+
+plot = Figure(plot_width=400, plot_height=400)
+plot.line('x', 'y', source=source, line_width=3, line_alpha=0.6)
+
+def my_text_input_handler(attr, old, new):
+    print("Previous label: " + old)
+    print("Updated label: " + new)
+
+text_input = TextInput(value="default", title="Label:")
+text_input.on_change("value", my_text_input_handler)
+
+layout = column(text_input, plot)
+
+show(layout)
+
+
+# In[ ]:
+
+
+
+
