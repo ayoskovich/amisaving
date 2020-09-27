@@ -14,6 +14,10 @@ from sympy import latex
 from sympy import solve
 from sympy import Eq
 
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure, output_notebook, show
+from bokeh.models import Span
+
 #%config InlineBackend.figure_format='retina'
 
 x = symbols('x');
@@ -58,24 +62,6 @@ BUF = 20  # Before and after equal
 x_vals = np.linspace(EQ-BUF, EQ+BUF, 100)
 y_vals1 = lam_a(x_vals)
 y_vals2 = lam_b(x_vals)
-
-plt.plot(x_vals, y_vals1, label='With equipment: '  + convert_title(latex(fixed)));
-plt.plot(x_vals, y_vals2, label='Buying each day: ' + convert_title(latex(variable)));
-
-plt.axvline(x=EQ, color='green');
-
-plt.title('Cost curves');
-plt.legend();
-plt.gcf().set_figwidth(12);
-plt.gcf().set_figheight(7);
-
-
-# In[ ]:
-
-
-from bokeh.models import ColumnDataSource
-from bokeh.plotting import figure, output_notebook, show
-from bokeh.models import Span
 
 output_notebook()
 
