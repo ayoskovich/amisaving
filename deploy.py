@@ -25,7 +25,10 @@ def callback(attr, old, new):
     new_data['y'] = dat.data['x']*10*(i + 1)
     p.title.text = f"Iteration: {i}"
     i = i + 1
-    print('Hello')
+    print(slope_input.value_input)
+    print(f'Attr: {attr}')
+    print(f'old: {old}')
+    print(f'new: {new}')
 
     dat.data = new_data
 

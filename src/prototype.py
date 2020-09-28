@@ -120,12 +120,7 @@ text_input = TextInput(value="default", title="Label:")
 text_input.on_change("value", my_text_input_handler)
 
 layout = column(text_input, plot)
+print(text_input.value_input)
 
 show(layout)
-
-
-# In[ ]:
-
-
-
 
