@@ -22,7 +22,11 @@ def callback(attr, old, new):
 
     new_data = dict()
     new_data['x'] = dat.data['x']
-    new_data['y'] = dat.data['x']*10*(i + 1)
+    try:
+        new_data['y'] = dat.data['x']*int(new)
+    except:
+        pass
+
     p.title.text = f"Iteration: {i}"
     i = i + 1
     print(slope_input.value_input)
