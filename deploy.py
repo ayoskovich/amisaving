@@ -13,7 +13,7 @@ y_vals = x_vals*2
 p = figure(title="testing!", x_range=(0, 100), y_range=(0, 100), 
            toolbar_location="right")
 
-r = p.circle(x_vals, y_vals)
+r = p.line(x_vals, y_vals)
 dat = r.data_source
 
 def callback(attr, old, new):
@@ -31,15 +31,13 @@ def callback2(attr, old, new):
     new_data = dict()
     new_data['x'] = dat.data['x']
     try:
-        new_data['y'] = int(new) + dat.data['x']
+        new_data['y'] = int(new) + dat.data['y']
     except:
         pass
 
     dat.data = new_data
 
-# add a button widget and configure with the call back
-button = Button(label="Press Me")
-# button.on_click(callback)
+
 
 slope_input = TextInput(value="", title="Enter variable cost here")
 slope_input.on_change("value", callback)
