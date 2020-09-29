@@ -2,3 +2,4 @@
 .ipynb_checkpoints/
 sympy.ipynb
 src/sympy.py
+amis_env/
