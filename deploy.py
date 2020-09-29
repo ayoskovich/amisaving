@@ -15,11 +15,8 @@ p = figure(title="testing!", x_range=(0, 100), y_range=(0, 100),
 
 r = p.circle(x_vals, y_vals)
 dat = r.data_source
-i = 0
 
 def callback(attr, old, new):
-    global i 
-
     new_data = dict()
     new_data['x'] = dat.data['x']
     try:
@@ -27,12 +24,16 @@ def callback(attr, old, new):
     except:
         pass
 
-    p.title.text = f"Iteration: {i}"
-    i = i + 1
-    print(slope_input.value_input)
-    print(f'Attr: {attr}')
-    print(f'old: {old}')
-    print(f'new: {new}')
+    dat.data = new_data
+
+
+def callback2(attr, old, new):
+    new_data = dict()
+    new_data['x'] = dat.data['x']
+    try:
+        new_data['y'] = int(new) + dat.data['x']
+    except:
+        pass
 
     dat.data = new_data
 
@@ -40,8 +41,12 @@ def callback(attr, old, new):
 button = Button(label="Press Me")
 # button.on_click(callback)
 
-slope_input = TextInput(value="Enter fixed cost here", title="Fixed cost:")
+slope_input = TextInput(value="", title="Enter variable cost here")
 slope_input.on_change("value", callback)
 
+
+int_input = TextInput(value="", title="Enter fixed cost here")
+int_input.on_change("value", callback2)
+
 # put the button and plot in a layout and add to the document
-curdoc().add_root(column(slope_input, p))
+curdoc().add_root(column(slope_input, int_input, p))
