@@ -10,7 +10,7 @@ y_vals = x_vals*2
 
 
 # create a plot and style its properties
-p = figure(title="Here is a line", x_range=(0, 100), y_range=(0, 100), 
+p = figure(title="This is a graph of a thing", x_range=(0, 100), y_range=(0, 100), 
            toolbar_location="right")
 
 r = p.line(x_vals, y_vals)
