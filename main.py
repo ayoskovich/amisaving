@@ -1,13 +1,13 @@
 import numpy as np
 
+from bokeh.models import ColumnDataSource
 from bokeh.layouts import column
 from bokeh.models import Button, TextInput
 from bokeh.palettes import RdYlBu3
 from bokeh.plotting import figure, curdoc
 
-# x_vals = np.linspace(0, 10, 20)
 x_vals = np.array([0, 1, 2, 3, 4])
-y_vals = x_vals
+y_vals = x_vals.copy()  # This is important
 
 df = ColumnDataSource(data={'x':x_vals,
                             'y':y_vals})
@@ -20,35 +20,32 @@ r = p.line(x='x', y='y', source=df)
 dat = r.data_source
 
 
-def callback(attr, old, new):
-    new_data = dict()
-    new_data['x'] = dat.data['x']
-    try:
-        new_data['y'] = dat.data['x']*int(new)
-    except:
-        pass
+def c_slope(attr, old, new):
+    xs = df.data['x']
+    ALL = slice(len(xs))
 
-    dat.data = new_data
+    df.patch({
+      'y':[(ALL, xs*int(new))]
+    })
+    print(f"Slope changed, new data: {df.data['y']}")
 
 
-def callback2(attr, old, new):
-    new_data = dict()
-    new_data['x'] = dat.data['x']
-    try:
-        new_data['y'] = int(new) + dat.data['x']
-    except:
-        pass
+def c_int(attr, old, new):
+    ys = df.data['y']
+    ALL = slice(len(ys))
 
-    dat.data = new_data
+    df.patch({
+      'y':[(ALL, ys+int(new))]
+    })
 
 
 
 slope_input = TextInput(value="", title="Slope")
-slope_input.on_change("value", callback)
+slope_input.on_change("value", c_slope)
 
 
 int_input = TextInput(value="", title="Intercept")
-int_input.on_change("value", callback2)
+int_input.on_change("value", c_int)
 
 # put the button and plot in a layout and add to the document
 curdoc().add_root(column(slope_input, int_input, p))
