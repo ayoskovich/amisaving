@@ -17,35 +17,24 @@ p = figure(title="This is a graph of a thing", x_range=(0, 10), y_range=(0, 10),
            toolbar_location="right")
 
 r = p.line(x='x', y='y', source=df)
-dat = r.data_source
-
-
-def c_slope(attr, old, new):
-    xs = df.data['x']
-    ALL = slice(len(xs))
-
-    df.patch({
-      'y':[(ALL, xs*int(new))]
-    })
-    print(f"Slope changed, new data: {df.data['y']}")
-
-
-def c_int(attr, old, new):
-    ys = df.data['y']
-    ALL = slice(len(ys))
-
-    df.patch({
-      'y':[(ALL, ys+int(new))]
-    })
-
-
 
 slope_input = TextInput(value="", title="Slope")
-slope_input.on_change("value", c_slope)
-
-
 int_input = TextInput(value="", title="Intercept")
-int_input.on_change("value", c_int)
+button = Button(label="Draw!")
+
+
+def b_call(event):
+    s = int(slope_input.value)
+    i = int(int_input.value)
+
+    ALL = slice(len(df.data['x']))
+
+    df.patch({
+      'y':[(ALL, df.data['x']*s + i)]
+    })
+
+
+button.on_click(b_call)
 
 # put the button and plot in a layout and add to the document
-curdoc().add_root(column(slope_input, int_input, p))
+curdoc().add_root(column(slope_input, int_input, button, p))
