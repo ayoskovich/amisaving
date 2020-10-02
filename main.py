@@ -13,8 +13,8 @@ df = ColumnDataSource(data={'x':x_vals,
                             'y':y_vals})
 
 columns = [
-  TableColumn(field="x"),
-  TableColumn(field="y")
+  TableColumn(field="x", title="X value"),
+  TableColumn(field="y", title="Y value")
 ]
 data_table = DataTable(source=df, columns=columns)
 
