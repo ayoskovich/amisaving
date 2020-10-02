@@ -1,6 +1,6 @@
 import numpy as np
 
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, DataTable, TableColumn
 from bokeh.layouts import column
 from bokeh.models import Button, TextInput
 from bokeh.palettes import RdYlBu3
@@ -12,9 +12,19 @@ y_vals = x_vals.copy()  # This is important
 df = ColumnDataSource(data={'x':x_vals,
                             'y':y_vals})
 
+columns = [
+  TableColumn(field="x"),
+  TableColumn(field="y")
+]
+data_table = DataTable(source=df, columns=columns)
+
+
 # create a plot and style its properties
-p = figure(title="This is a graph of a thing", x_range=(0, 10), y_range=(0, 10), 
-           toolbar_location="right")
+p = figure(title="Cost Comparison", x_range=(0, 10), y_range=(0, 10), 
+           tools = "wheel_zoom, pan, reset", toolbar_location="right")
+
+p.xaxis.axis_label = "X label"
+p.yaxis.axis_label = "Y label"
 
 r = p.line(x='x', y='y', source=df)
 
@@ -37,4 +47,4 @@ def b_call(event):
 button.on_click(b_call)
 
 # put the button and plot in a layout and add to the document
-curdoc().add_root(column(slope_input, int_input, button, p))
+curdoc().add_root(column(slope_input, int_input, button, p, data_table))
