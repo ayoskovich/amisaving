@@ -42,6 +42,9 @@ button = Button(label="Draw!")
 
 
 def b_call(event):
+    """
+    Button functionality stuff
+    """
     s = int(slope_input.value)
     i = int(int_input.value)
 
@@ -54,14 +57,17 @@ def b_call(event):
       'y2':[(ALL, df.data['x']*v)]
     })
 
+    # Solve cost equality here
+
+
+
+
 
 button.on_click(b_call)
 
-# put the button and plot in a layout and add to the document
-
-INPUTS = column(slope_input, int_input, button, p, data_table)
+INPUTS = column(slope_input, int_input, button, p)
 my_layout = layout([
-  [INPUTS, var_input]
+  [INPUTS, column(var_input, data_table)]
 ])
 
 curdoc().add_root(my_layout)
