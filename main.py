@@ -1,7 +1,7 @@
 import numpy as np
 
 from bokeh.models import ColumnDataSource, DataTable, TableColumn
-from bokeh.layouts import column
+from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
 from bokeh.palettes import RdYlBu3
 from bokeh.plotting import figure, curdoc
@@ -30,6 +30,9 @@ r = p.line(x='x', y='y', source=df)
 
 slope_input = TextInput(value="", title="Slope")
 int_input = TextInput(value="", title="Intercept")
+
+var_input = TextInput(value="", title="Variable Slope")
+
 button = Button(label="Draw!")
 
 
@@ -47,4 +50,10 @@ def b_call(event):
 button.on_click(b_call)
 
 # put the button and plot in a layout and add to the document
-curdoc().add_root(column(slope_input, int_input, button, p, data_table))
+
+INPUTS = column(slope_input, int_input, button, p, data_table)
+my_layout = layout([
+  [INPUTS, var_input]
+])
+
+curdoc().add_root(my_layout)
