@@ -10,11 +10,14 @@ x_vals = np.array([0, 1, 2, 3, 4])
 y_vals = x_vals.copy()  # This is important
 
 df = ColumnDataSource(data={'x':x_vals,
-                            'y':y_vals})
+                            'y':y_vals,
+                            'y2':y_vals.copy()
+})
 
 columns = [
   TableColumn(field="x", title="X value"),
-  TableColumn(field="y", title="Y value")
+  TableColumn(field="y", title="Y value"),
+  TableColumn(field="y2", title="Second Y value")
 ]
 data_table = DataTable(source=df, columns=columns)
 
@@ -27,6 +30,7 @@ p.xaxis.axis_label = "X label"
 p.yaxis.axis_label = "Y label"
 
 r = p.line(x='x', y='y', source=df)
+r = p.line(x='x', y='y2', source=df)
 
 slope_input = TextInput(value="", title="Slope")
 int_input = TextInput(value="", title="Intercept")
