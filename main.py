@@ -44,10 +44,13 @@ def b_call(event):
     s = int(slope_input.value)
     i = int(int_input.value)
 
+    v = int(var_input.value)
+
     ALL = slice(len(df.data['x']))
 
     df.patch({
-      'y':[(ALL, df.data['x']*s + i)]
+      'y':[(ALL, df.data['x']*s + i)],
+      'y2':[(ALL, df.data['x']*v)]
     })
 
 
