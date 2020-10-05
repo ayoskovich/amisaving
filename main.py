@@ -33,10 +33,10 @@ wid = 2
 r = p.line(x='x', y='y', line_width=wid, color="red", source=df)
 r = p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
 
-slope_input = TextInput(value="", title="Slope")
-int_input = TextInput(value="", title="Intercept")
+slope_input = TextInput(value="", title="Variable cost")
+int_input = TextInput(value="", title="Startup cost")
 
-var_input = TextInput(value="", title="Variable Slope")
+var_input = TextInput(value="", title="No equipment cost per unit")
 
 button = Button(label="Draw!")
 
