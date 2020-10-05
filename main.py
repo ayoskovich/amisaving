@@ -1,6 +1,12 @@
 import numpy as np
 
-from bokeh.models import ColumnDataSource, DataTable, TableColumn
+from sympy import symbols
+from sympy import lambdify
+from sympy import latex
+from sympy import solve
+from sympy import Eq
+
+from bokeh.models import ColumnDataSource, DataTable, TableColumn, Span
 from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
 from bokeh.palettes import RdYlBu3
@@ -33,12 +39,24 @@ wid = 2
 r = p.line(x='x', y='y', line_width=wid, color="red", source=df)
 r = p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
 
+
 slope_input = TextInput(value="", title="Variable cost")
 int_input = TextInput(value="", title="Startup cost")
 
 var_input = TextInput(value="", title="No equipment cost per unit")
 
 button = Button(label="Draw!")
+
+x = symbols('x')
+
+def build_cost(slope, inter=0):
+    """ Create the total cost curve.
+    
+    Returns a sympy equation.
+    """
+    m, x, b = symbols('m x b')
+    COST = m*x + b
+    return COST.subs(m, slope).subs(b, inter)
 
 
 def b_call(event):
@@ -58,6 +76,17 @@ def b_call(event):
     })
 
     # Solve cost equality here
+    fixed = build_cost(slope=s, inter=i)
+    variable = build_cost(slope=v)
+
+    # Update vertical line
+    solution = solve(Eq(fixed, variable))
+    print(f'Solution: {solution}')
+    EQ = float(solution[0])
+
+    eq_solve = Span(location=EQ, dimension='height', line_width=2)
+    p.add_layout(eq_solve)
+
 
 
 
