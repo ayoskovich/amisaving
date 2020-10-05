@@ -63,10 +63,10 @@ def b_call(event):
     """
     Button functionality stuff
     """
-    s = int(slope_input.value)
-    i = int(int_input.value)
+    s = float(slope_input.value)
+    i = float(int_input.value)
 
-    v = int(var_input.value)
+    v = float(var_input.value)
 
     ALL = slice(len(df.data['x']))
 
