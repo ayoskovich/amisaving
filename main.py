@@ -39,6 +39,8 @@ wid = 2
 r = p.line(x='x', y='y', line_width=wid, color="red", source=df)
 r = p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
 
+eq_solve = Span(location=0, dimension='height', line_width=2)
+p.add_layout(eq_solve)
 
 slope_input = TextInput(value="", title="Variable cost")
 int_input = TextInput(value="", title="Startup cost")
@@ -83,11 +85,7 @@ def b_call(event):
     solution = solve(Eq(fixed, variable))
     print(f'Solution: {solution}')
     EQ = float(solution[0])
-
-    eq_solve = Span(location=EQ, dimension='height', line_width=2)
-    p.add_layout(eq_solve)
-
-
+    eq_solve.location = EQ
 
 
 
