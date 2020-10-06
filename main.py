@@ -7,6 +7,7 @@ from sympy import solve
 from sympy import Eq
 
 from bokeh.models import ColumnDataSource, DataTable, TableColumn, Span
+from bokeh.models import Div
 from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
 from bokeh.palettes import RdYlBu3
@@ -51,6 +52,7 @@ button = Button(label="Draw!")
 
 x = symbols('x')
 
+
 def build_cost(slope, inter=0):
     """ Create the total cost curve.
     
@@ -83,18 +85,20 @@ def b_call(event):
 
     # Update vertical line
     solution = solve(Eq(fixed, variable))
-    print(f'Solution: {solution}')
     EQ = float(solution[0])
     eq_solve.location = EQ
 
 
-
+header = Div(text="""<h1>Am I Saving?</h1>""")
+w_start = Div(text="<h3>Purchasing equipment</h3>")
+no_start = Div(text="<h3>No equipment</h3>")
 
 button.on_click(b_call)
 
-INPUTS = column(slope_input, int_input, button, p)
+INPUTS = column(w_start, slope_input, int_input, button, p)
 my_layout = layout([
-  [INPUTS, column(var_input, data_table)]
+  [header],
+  [INPUTS, column(no_start,var_input, data_table)]
 ])
 
 curdoc().add_root(my_layout)
