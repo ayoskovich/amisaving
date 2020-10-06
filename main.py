@@ -84,13 +84,15 @@ def b_call(event):
 header = Div(text="""<h1>Am I Saving?</h1>""")
 w_start = Div(text="<h3>Purchasing equipment</h3>")
 no_start = Div(text="<h3>No equipment</h3>")
+answer = Div(text="<h3>If you purchase equipment...</h3>")
 
 button.on_click(b_call)
 
-INPUTS = column(w_start, slope_input, int_input, button, p)
+INPUTS = column(w_start, slope_input, int_input, button)
 my_layout = layout([
   [header],
-  [INPUTS, column(no_start,var_input)]
+  [INPUTS, column(no_start,var_input)],
+  [column(answer, p)]
 ])
 
 curdoc().add_root(my_layout)
