@@ -21,14 +21,6 @@ df = ColumnDataSource(data={'x':x_vals,
                             'y2':y_vals.copy()
 })
 
-columns = [
-  TableColumn(field="x", title="X value"),
-  TableColumn(field="y", title="Y value"),
-  TableColumn(field="y2", title="Second Y value")
-]
-data_table = DataTable(source=df, columns=columns)
-
-
 # create a plot and style its properties
 p = figure(title="Cost Comparison", x_range=(0, 10), y_range=(0, 10), 
            tools = "wheel_zoom, pan, reset", toolbar_location="right")
@@ -98,7 +90,7 @@ button.on_click(b_call)
 INPUTS = column(w_start, slope_input, int_input, button, p)
 my_layout = layout([
   [header],
-  [INPUTS, column(no_start,var_input, data_table)]
+  [INPUTS, column(no_start,var_input)]
 ])
 
 curdoc().add_root(my_layout)
