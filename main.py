@@ -44,6 +44,20 @@ button = Button(label="Draw!")
 
 x = symbols('x')
 
+def show_text(slope1, slope2, eq):
+    "Create dynamic banner"
+    bigger = lambda a, b: a if (a > b) else b
+    smaller = lambda a, b: a if (a < b) else b
+
+    big = bigger(slope1, slope2)
+    small = smaller(slope1, slope2)
+
+    txt = f"""
+    You save money with {big} before {eq} but with {small} after {eq}
+    """ 
+    return txt
+
+
 
 def build_cost(slope, inter=0):
     """ Create the total cost curve.
@@ -80,7 +94,7 @@ def b_call(event):
     EQ = float(solution[0])
     eq_solve.location = EQ
 
-    answer.text = f"<h3>Lines equal at {EQ}</h3>"
+    answer.text = show_text(s, v, EQ)
 
 
 header = Div(text="""<h1>Am I Saving?</h1>""")
