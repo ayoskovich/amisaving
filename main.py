@@ -80,11 +80,13 @@ def b_call(event):
     EQ = float(solution[0])
     eq_solve.location = EQ
 
+    answer.text = f"<h3>Lines equal at {EQ}</h3>"
+
 
 header = Div(text="""<h1>Am I Saving?</h1>""")
 w_start = Div(text="<h3>Purchasing equipment</h3>")
 no_start = Div(text="<h3>No equipment</h3>")
-answer = Div(text="<h3>If you purchase equipment...</h3>")
+answer = Div()
 
 button.on_click(b_call)
 
