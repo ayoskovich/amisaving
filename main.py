@@ -90,10 +90,9 @@ def b_call(event):
     fixed = build_cost(slope=s, inter=i)
     variable = build_cost(slope=v)
 
-    # Update vertical line
     solution = solve(Eq(fixed, variable))
     EQ = float(solution[0])
-    eq_solve.location = EQ
+    eq_solve.location = EQ  # Vertical line location
 
     answer.text = show_text(s, v, EQ)
 
@@ -107,8 +106,8 @@ to spend money on equipment.
 </p>
 """, width=PAGE_WIDTH)
 
-w_start = Div(text="<h3>Purchasing equipment</h3>")
-no_start = Div(text="<h3>No equipment</h3>")
+w_start = Div(text="<h3>Purchasing equipment</h3>", width=int(PAGE_WIDTH / 2))
+no_start = Div(text="<h3>No equipment</h3>", width=int(PAGE_WIDTH / 2))
 answer = Div()
 
 button.on_click(b_call)
