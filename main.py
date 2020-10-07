@@ -21,10 +21,12 @@ df = ColumnDataSource(data={'x':x_vals,
                             'y2':y_vals.copy()
 })
 
+PAGE_WIDTH = 800
+
 # create a plot and style its properties
 p = figure(title="Cost Comparison", x_range=(0, 10), y_range=(0, 10), 
            tools = "wheel_zoom, pan, reset", toolbar_location="right",
-           plot_width=800, plot_height=400)
+           plot_width=PAGE_WIDTH, plot_height=400)
 
 p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
@@ -103,7 +105,7 @@ This website is meant to help you make informed spending decisions.
 More specifically, it will aid you when your asking questions about whether or not it's worth it
 to spend money on equipment. 
 </p>
-""")
+""", width=PAGE_WIDTH)
 
 w_start = Div(text="<h3>Purchasing equipment</h3>")
 no_start = Div(text="<h3>No equipment</h3>")
