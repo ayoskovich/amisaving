@@ -23,23 +23,22 @@ df = ColumnDataSource(data={'x':x_vals,
 
 # create a plot and style its properties
 p = figure(title="Cost Comparison", x_range=(0, 10), y_range=(0, 10), 
-           tools = "wheel_zoom, pan, reset", toolbar_location="right")
+           tools = "wheel_zoom, pan, reset", toolbar_location="right",
+           plot_width=800, plot_height=400)
 
-p.xaxis.axis_label = "X label"
-p.yaxis.axis_label = "Y label"
+p.xaxis.axis_label = "# of units purchased"
+p.yaxis.axis_label = "Total Cost"
 
 wid = 2
-r = p.line(x='x', y='y', line_width=wid, color="red", source=df)
-r = p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
+p.line(x='x', y='y', line_width=wid, color="red", source=df)
+p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
 
 eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)
 
 slope_input = TextInput(value="", title="Variable cost")
 int_input = TextInput(value="", title="Startup cost")
-
 var_input = TextInput(value="", title="No equipment cost per unit")
-
 button = Button(label="Draw!")
 
 x = symbols('x')
@@ -97,7 +96,15 @@ def b_call(event):
     answer.text = show_text(s, v, EQ)
 
 
-header = Div(text="""<h1>Am I Saving?</h1>""")
+header = Div(text="<h1>Am I Saving?</h1>")
+
+description = Div(text="""<p>
+This website is meant to help you make informed spending decisions.
+More specifically, it will aid you when your asking questions about whether or not it's worth it
+to spend money on equipment. 
+</p>
+""")
+
 w_start = Div(text="<h3>Purchasing equipment</h3>")
 no_start = Div(text="<h3>No equipment</h3>")
 answer = Div()
@@ -107,6 +114,7 @@ button.on_click(b_call)
 INPUTS = column(w_start, slope_input, int_input, button)
 my_layout = layout([
   [header],
+  [description],
   [INPUTS, column(no_start,var_input)],
   [column(answer, p)]
 ])
