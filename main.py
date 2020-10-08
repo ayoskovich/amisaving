@@ -13,6 +13,7 @@ from bokeh.models import Button, TextInput
 from bokeh.palettes import RdYlBu3
 from bokeh.plotting import figure, curdoc
 
+
 x_vals = np.array([0, 1, 2, 3, 4])
 y_vals = x_vals.copy()  # This is important
 
@@ -38,9 +39,9 @@ p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
 eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)
 
-slope_input = TextInput(value="", title="Variable cost")
-int_input = TextInput(value="", title="Startup cost")
-var_input = TextInput(value="", title="No equipment cost per unit")
+slope_input = TextInput(value="", title="Cost per unit with equipment")
+var_input = TextInput(value="", title="Cost per unit without equipment")
+int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH)
 button = Button(label="Draw!")
 
 x = symbols('x')
@@ -112,11 +113,11 @@ answer = Div()
 
 button.on_click(b_call)
 
-INPUTS = column(w_start, slope_input, int_input, button)
+INPUTS = column(int_input, slope_input, var_input, button)
 my_layout = layout([
   [header],
   [description],
-  [INPUTS, column(no_start,var_input)],
+  [INPUTS],
   [column(answer, p)]
 ])
 
