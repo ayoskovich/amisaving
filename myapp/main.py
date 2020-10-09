@@ -42,7 +42,7 @@ p.add_layout(eq_solve)
 slope_input = TextInput(value="", title="Cost per unit with equipment")
 var_input = TextInput(value="", title="Cost per unit without equipment")
 int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH)
-button = Button(label="Draw!")
+button = Button(label="Draw!", css_classes=["my_button"])
 
 x = symbols('x')
 
@@ -55,7 +55,7 @@ def show_text(slope1, slope2, eq):
     small = smaller(slope1, slope2)
 
     txt = f"""
-    You save money with {big} before {eq} but with {small} after {eq}
+    <p>You save money with {big} before {eq} but with {small} after {eq}</p>
     """ 
     return txt
 
@@ -113,11 +113,10 @@ answer = Div()
 
 button.on_click(b_call)
 
-INPUTS = column(int_input, slope_input, var_input, button)
 my_layout = layout([
   [header],
   [description],
-  [INPUTS],
+  [column(int_input, slope_input, var_input, button)],
   [column(answer, p)]
 ])
 

@@ -2,6 +2,10 @@ h1 {
   color: red;
 }
 
+.bk-root .bk-btn-default {
+  background-color: #4CAF50 ;
+}
+
 /* Styles for button text 
 .bk {
   color: orange;
