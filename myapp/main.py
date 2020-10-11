@@ -6,7 +6,6 @@ from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
 from bokeh.plotting import figure, curdoc
 
-
 x_vals = np.array([0, 1, 2, 3, 4])
 y_vals = x_vals.copy()  # This is important
 
@@ -34,7 +33,7 @@ p.add_layout(eq_solve)
 
 slope_input = TextInput(value="", title="Cost per unit with equipment")
 var_input = TextInput(value="", title="Cost per unit without equipment")
-int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH, css_classes=['paddit'])
+int_input = TextInput(value="", title="Cost of equipment")
 button = Button(label="Draw!", css_classes=["my_button"])
 
 
@@ -63,11 +62,18 @@ def b_call(event):
 
 
 header = Div(text="<h1>Am I Saving?</h1>")
+description = Div(text="""
+<p>
+Should I invest in equipment to brew coffee at home? While it costs some money to start off, after a while I may be saving money. Over what time frame am I better off making each choice?
+</p>
+<p>
+In order to make this decision we'll need a few numbers.
 
-description = Div(text="""<p>
-This website is meant to help you make informed spending decisions.
-More specifically, it will aid you when your asking questions about whether or not it's worth it
-to spend money on equipment. 
+<ol>
+  <li>Cost of equipment: Amount of money in order to purchase equipment</li>
+  <li>Cost per unit with equipment: Amount of money per use once you've purchased equipment.</li>
+  <li>Cost per unit without equipment: Amount of money per use if you don't purchase any equipment</li>
+</ol>
 </p>
 """, width=PAGE_WIDTH)
 
@@ -80,8 +86,8 @@ button.on_click(b_call)
 my_layout = layout([
   [header],
   [description],
-  [column(int_input, slope_input, var_input, button)],
-  [column(answer, p)]
+  [column(w_start, int_input, slope_input), column(no_start, var_input)],
+  [column(button, answer, p)]
 ])
 
 curdoc().add_root(my_layout)
