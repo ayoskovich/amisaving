@@ -1,12 +1,9 @@
 from choice import Choice
 import numpy as np
 
-
-from bokeh.models import ColumnDataSource, DataTable, TableColumn, Span
-from bokeh.models import Div
+from bokeh.models import ColumnDataSource, Span, Div
 from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
-from bokeh.palettes import RdYlBu3
 from bokeh.plotting import figure, curdoc
 
 
@@ -37,7 +34,7 @@ p.add_layout(eq_solve)
 
 slope_input = TextInput(value="", title="Cost per unit with equipment")
 var_input = TextInput(value="", title="Cost per unit without equipment")
-int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH)
+int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH, css_classes=['paddit'])
 button = Button(label="Draw!", css_classes=["my_button"])
 
 
@@ -59,7 +56,7 @@ def b_call(event):
       diff = Choice.when_equal(a, b)
       eq_solve.location = diff['sol']
       answer.text = diff['descr']
-      
+
     except ValueError:
       eq_solve.location = 0
       answer.text = 'There isnt a solution'
