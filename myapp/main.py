@@ -1,10 +1,6 @@
+from choice import Choice
 import numpy as np
 
-from sympy import symbols
-from sympy import lambdify
-from sympy import latex
-from sympy import solve
-from sympy import Eq
 
 from bokeh.models import ColumnDataSource, DataTable, TableColumn, Span
 from bokeh.models import Div
@@ -44,8 +40,6 @@ var_input = TextInput(value="", title="Cost per unit without equipment")
 int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH)
 button = Button(label="Draw!", css_classes=["my_button"])
 
-x = symbols('x')
-
 def show_text(slope1, slope2, eq):
     "Create dynamic banner"
     bigger = lambda a, b: a if (a > b) else b
@@ -62,42 +56,23 @@ def show_text(slope1, slope2, eq):
     return txt
 
 
-
-def build_cost(slope, inter=0):
-    """ Create the total cost curve.
-    
-    Returns a sympy equation.
-    """
-    m, x, b = symbols('m x b')
-    COST = m*x + b
-    return COST.subs(m, slope).subs(b, inter)
-
-
 def b_call(event):
     """
     Button functionality stuff
     """
-    s = float(slope_input.value)
-    i = float(int_input.value)
-
-    v = float(var_input.value)
+    a = Choice('Purchasing equipment', slope_input.value, int_input.value)
+    b = Choice('No equipment', var_input.value)
 
     ALL = slice(len(df.data['x']))
 
     df.patch({
-      'y':[(ALL, df.data['x']*s + i)],
-      'y2':[(ALL, df.data['x']*v)]
+      'y':[(ALL, df.data['x']*a.slope + a.inter)],
+      'y2':[(ALL, df.data['x']*b.slope)]
     })
 
-    # Solve cost equality here
-    fixed = build_cost(slope=s, inter=i)
-    variable = build_cost(slope=v)
+    eq_solve.location = Choice.when_equal(a, b)
 
-    solution = solve(Eq(fixed, variable))
-    EQ = float(solution[0])
-    eq_solve.location = EQ  # Vertical line location
-
-    answer.text = show_text(s, v, EQ)
+    answer.text = 'Updating text!'
 
 
 header = Div(text="<h1>Am I Saving?</h1>")
