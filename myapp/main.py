@@ -53,6 +53,8 @@ def show_text(slope1, slope2, eq):
 
     big = bigger(slope1, slope2)
     small = smaller(slope1, slope2)
+    if slope1 == slope2:
+      return "<p>The slopes are the same!</p>"
 
     txt = f"""
     <p>You save money with {big} before {eq} but with {small} after {eq}</p>
