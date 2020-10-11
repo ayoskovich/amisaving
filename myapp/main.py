@@ -40,21 +40,6 @@ var_input = TextInput(value="", title="Cost per unit without equipment")
 int_input = TextInput(value="", title="Cost of equipment", width=PAGE_WIDTH)
 button = Button(label="Draw!", css_classes=["my_button"])
 
-def show_text(slope1, slope2, eq):
-    "Create dynamic banner"
-    bigger = lambda a, b: a if (a > b) else b
-    smaller = lambda a, b: a if (a < b) else b
-
-    big = bigger(slope1, slope2)
-    small = smaller(slope1, slope2)
-    if slope1 == slope2:
-      return "<p>The slopes are the same!</p>"
-
-    txt = f"""
-    <p>You save money with {big} before {eq} but with {small} after {eq}</p>
-    """ 
-    return txt
-
 
 def b_call(event):
     """
@@ -70,9 +55,14 @@ def b_call(event):
       'y2':[(ALL, df.data['x']*b.slope)]
     })
 
-    eq_solve.location = Choice.when_equal(a, b)
-
-    answer.text = 'Updating text!'
+    try:
+      diff = Choice.when_equal(a, b)
+      eq_solve.location = diff['sol']
+      answer.text = diff['descr']
+      
+    except ValueError:
+      eq_solve.location = 0
+      answer.text = 'There isnt a solution'
 
 
 header = Div(text="<h1>Am I Saving?</h1>")

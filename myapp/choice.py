@@ -26,9 +26,11 @@ class Choice:
         """ Compare 2 choices. """
         solution = solve(Eq(a.eq, b.eq))
 
-        if len(solution) == 1:
-            return float(solution[0])
-        if len(solution) > 1:
-            return 'Solution is not unique'
-        elif len(solution) == 0:
-            return 'There is no solution...'
+        if (len(solution) > 1) | (len(solution) == 0):
+            raise ValueError('Rut ro...')
+
+        sol = float(solution[0])
+        descr = f'The lines touch at {sol}'
+
+        return {'sol':sol, 
+                'descr':descr}
