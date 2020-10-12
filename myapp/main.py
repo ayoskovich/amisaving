@@ -66,19 +66,8 @@ description = Div(text="""
 <p>
 Should I invest in equipment to brew coffee at home? While it costs some money to start off, after a while I may be saving money. Over what time frame am I better off making each choice?
 </p>
-<p>
-In order to make this decision we'll need a few numbers.
-
-<ol>
-  <li>Cost of equipment: Amount of money in order to purchase equipment</li>
-  <li>Cost per unit with equipment: Amount of money per use once you've purchased equipment.</li>
-  <li>Cost per unit without equipment: Amount of money per use if you don't purchase any equipment</li>
-</ol>
-</p>
 """, width=PAGE_WIDTH)
 
-w_start = Div(text="<h3>Purchasing equipment</h3>", width=int(PAGE_WIDTH / 2))
-no_start = Div(text="<h3>No equipment</h3>", width=int(PAGE_WIDTH / 2))
 answer = Div()
 
 button.on_click(b_call)
@@ -86,7 +75,7 @@ button.on_click(b_call)
 my_layout = layout([
   [header],
   [description],
-  [column(w_start, int_input, slope_input), column(no_start, var_input)],
+  [column(int_input, slope_input, var_input)],
   [column(button, answer, p)]
 ])
 

@@ -34,11 +34,12 @@ class Choice:
 
         sol = float(solution[0])
 
+        # Massive brain play right here
         big = max([a,b], key=attrgetter('slope'))
         small = min([a,b], key=attrgetter('slope'))
 
-        descr =  f'<p>Before {sol} units, you save money with {big.name}.</p>'
-        descr += f'<p>After {sol} units, you will be saving money with {small.name}.</p>'
+        descr =  f'<p>Before {round(sol, 2)} purchases, you save money with {big.name}. '
+        descr += f'After {round(sol)} purchases, you save money with {small.name}.</p>'
 
         return {'sol':sol, 
                 'descr':descr}
