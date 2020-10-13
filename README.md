@@ -7,4 +7,3 @@ The project uses mostly python, along with some some html and css. The interacti
 Click [here](https://amisaving.herokuapp.com/myapp) in order to see it live in action! Or view the screenshot below:
 
 ![an image of the app](amisaving_v1.png)
-
