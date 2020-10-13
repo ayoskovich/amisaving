@@ -1,12 +1,12 @@
 from choice import Choice
 import numpy as np
 
-from bokeh.models import ColumnDataSource, Span, Div
+from bokeh.models import ColumnDataSource, Span, Div, Range1d
 from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
 from bokeh.plotting import figure, curdoc
 
-x_vals = np.array([0, 1, 2, 3, 4])
+x_vals = np.arange(0, 1000)
 y_vals = x_vals.copy()  # This is important
 
 df = ColumnDataSource(data={'x':x_vals,
@@ -17,7 +17,7 @@ df = ColumnDataSource(data={'x':x_vals,
 PAGE_WIDTH = 800
 
 # create a plot and style its properties
-p = figure(title="Cost Comparison", x_range=(0, 10), y_range=(0, 10), 
+p = figure(title="Cost Comparison", x_range=(0, 1000), y_range=(0, 1000), 
            tools = "wheel_zoom, pan, reset", toolbar_location="right",
            plot_width=PAGE_WIDTH, plot_height=400)
 
@@ -53,8 +53,17 @@ def b_call(event):
 
     try:
       diff = Choice.when_equal(a, b)
-      eq_solve.location = diff['sol']
+      BUF = 10
+      SOL = diff['sol']['x']
+      eq_solve.location = SOL
       answer.text = diff['descr']
+
+      p.x_range.start = SOL - BUF
+      p.x_range.end = SOL + BUF
+
+      p.y_range.start = diff['sol']['y'] - BUF
+      p.y_range.end = diff['sol']['y'] + BUF
+      print(diff['sol']['y'])
 
     except ValueError:
       eq_solve.location = 0

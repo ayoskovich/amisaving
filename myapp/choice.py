@@ -32,7 +32,10 @@ class Choice:
         if (len(solution) > 1) | (len(solution) == 0):
             raise ValueError('Rut ro...')
 
-        sol = float(solution[0])
+        sol = float(solution[0])  # xval
+
+        x = symbols('x')
+        yval = float(a.eq.subs(x, sol))
 
         # Massive brain play right here
         big = max([a,b], key=attrgetter('slope'))
@@ -41,5 +44,5 @@ class Choice:
         descr =  f'<p>Before {round(sol, 2)} purchases, you save money by {big.name}. '
         descr += f'After {round(sol)} purchases, you save money by {small.name}.</p>'
 
-        return {'sol':sol, 
+        return {'sol':{'x':sol, 'y':yval}, 
                 'descr':descr}
