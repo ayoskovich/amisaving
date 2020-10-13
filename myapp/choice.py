@@ -38,8 +38,8 @@ class Choice:
         big = max([a,b], key=attrgetter('slope'))
         small = min([a,b], key=attrgetter('slope'))
 
-        descr =  f'<p>Before {round(sol, 2)} purchases, you save money with {big.name}. '
-        descr += f'After {round(sol)} purchases, you save money with {small.name}.</p>'
+        descr =  f'<p>Before {round(sol, 2)} purchases, you save money by {big.name}. '
+        descr += f'After {round(sol)} purchases, you save money by {small.name}.</p>'
 
         return {'sol':sol, 
                 'descr':descr}
