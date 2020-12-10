@@ -69,42 +69,11 @@ def b_call(event):
       answer.text = 'There isnt a solution'
 
 
-header = Div(text="<h1>Am I Saving?</h1>")
-description = Div(text="""
-<h3>
-Should I invest in equipment to brew coffee at home, or is it cheaper to just buy coffee at Starbucks? Should I purchase a car or Uber everywhere? This calculator is meant to help you make these types of decisions.
-</h3>
-<p>
-Let's focus on the coffee example. I have 2 options: 
-</p>
-<ol>
-  <li>Purchase equipment and brew at home.</li>
-  <li>Don't buy any equipment and purchase a cup of coffee at Starbucks.</li>
-</ol>
-<p>
-For option 1, I would need to buy things like a kettle, a french press, and maybe some filters (let's say this all costs $60). Then, for each additional cup of coffee my only cost would be the coffee beans themselves (let's say $1 per cup). 
-For option 2, I spend $0 on equipment but need to pay Starbucks for each cup of coffee (let's say $3).
-</p>
-<p>
-That's a lot of words! In summary...
-<ul>
-  <li><span class='bold'>Cost of equipment:</span> The $60 I would spend on coffee equipment (filters, coffee machine, kettle, etc.).</li>
-  <li><span class='bold'>Cost per unit with equipment:</span> The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
-  <li><span class='bold'>Cost per unit without equipment:</span> The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
-</ul>
-</p>
-<p>
-Click the 'Draw!' button below to compare these two options! (If you'd like to autopopulate the numbers from the coffee example, simply refresh the page.)
-</p>
-""", width=PAGE_WIDTH)
-
 answer = Div()
 
 button.on_click(b_call)
 
 my_layout = layout([
-  [header],
-  [description],
   [column(int_input, slope_input, var_input)],
   [column(button, answer, p)]
 ])
