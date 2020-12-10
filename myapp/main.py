@@ -63,7 +63,6 @@ def b_call(event):
 
       p.y_range.start = diff['sol']['y'] - BUF
       p.y_range.end = diff['sol']['y'] + BUF
-      print(diff['sol']['y'])
 
     except ValueError:
       eq_solve.location = 0
