@@ -5,6 +5,7 @@ from bokeh.models import ColumnDataSource, Span, Div, Range1d
 from bokeh.layouts import column, layout
 from bokeh.models import Button, TextInput
 from bokeh.plotting import figure, curdoc
+from bokeh.embed import components
 
 x_vals = np.arange(0, 1000)
 y_vals = x_vals.copy()  # This is important
@@ -80,4 +81,10 @@ my_layout = layout([
 
 curdoc().add_root(my_layout)
 
+script, div = components(my_layout)
 
+with open("script.html", "w") as file:
+  file.write(script)
+
+with open("div.html", "w") as file:
+  file.write(div)
