@@ -83,8 +83,8 @@ curdoc().add_root(my_layout)
 
 script, div = components(my_layout)
 
-with open("script.html", "w") as file:
+with open("templates/script.html", "w") as file:
   file.write(script)
 
-with open("div.html", "w") as file:
+with open("templates/div.html", "w") as file:
   file.write(div)
