@@ -34,8 +34,8 @@ p.add_layout(eq_solve)
 
 slope_input = TextInput(value="1", title="Cost per unit with equipment:")
 var_input = TextInput(value="3", title="Cost per unit without equipment:", width=PAGE_WIDTH)
-int_input = TextInput(value="60", title="Cost of equipment:")
-button = Button(label="Draw!")
+int_input = TextInput(value="60", title="Cost of equipment:", name="int_input")
+button = Button(label="Draw!", name="myButton")
 
 
 def b_call(event):
@@ -77,11 +77,6 @@ button.on_click(b_call)
 my_layout = layout([
   [column(int_input, slope_input, var_input)],
   [column(button, answer, p)]
-])
+], name="lays")
 
-vale = figure(name='hehe')
-vale.circle([1,2], [3,4])
-
-curdoc().add_root(p)
-curdoc().add_root(vale)
-
+curdoc().add_root(my_layout)
