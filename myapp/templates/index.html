@@ -1,21 +1,44 @@
+{% from macros import embed %}
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
-        {{ bokeh_css }}
-        {{ bokeh_js }}
-        <style>
-             {% include 'styles.css' %}
-        </style>
-        <!-- <link rel="stylesheet" href="styles.css"/> -->
-        <div class="content">
-        </div>
-    </head>
-    <body>
-        {{ plot_div|indent(8) }}
-        {{ plot_script|indent(8) }}
-    </body>
+  {% block head %}
+  <head>
+  <!-- Here's a quick lil comment -->
+    {% block inner_head %}
+      <meta charset="utf-8">
+      <title>{% block title %}{{ title | e if title else "Bokeh Plot" }}{% endblock %}</title>
+
+      {% block preamble %}{% endblock %}
+      {% block resources %}
+        {% block css_resources %}
+          {{ bokeh_css | indent(8) if bokeh_css }}
+        {% endblock %}
+        {% block js_resources %}
+          {{ bokeh_js | indent(8) if bokeh_js }}
+        {% endblock %}
+      {% endblock %}
+      {% block postamble %}{% endblock %}
+    {% endblock %}
+  </head>
+  {% endblock %}
+
+  {% block body %}
+  <body>
+    {% block inner_body %}
+      {% block contents %}
+        {% for doc in docs %}
+          {{ embed(doc) if doc.elementid }}
+          {% for root in doc.roots %}
+            {% block root scoped %}
+              {{ embed(root) | indent(10) }}
+            {% endblock %}
+          {% endfor %}
+        {% endfor %}
+      {% endblock %}
+      {{ plot_script | indent(8) }}
+    {% endblock %}
+  </body>
+  {% endblock %}
 
 </html>
-
