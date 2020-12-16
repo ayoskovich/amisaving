@@ -20,7 +20,7 @@ PAGE_WIDTH = 800
 # create a plot and style its properties
 p = figure(title="Cost Comparison", x_range=(0, 1000), y_range=(0, 1000), 
            tools = "wheel_zoom, pan, reset", toolbar_location="right",
-           plot_width=PAGE_WIDTH, plot_height=400, name="main_fig")
+           name="main_fig")
 
 p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
@@ -33,7 +33,7 @@ eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)
 
 slope_input = TextInput(value="1", title="Cost per unit with equipment:")
-var_input = TextInput(value="3", title="Cost per unit without equipment:", width=PAGE_WIDTH)
+var_input = TextInput(value="3", title="Cost per unit without equipment:")
 int_input = TextInput(value="60", title="Cost of equipment:", name="int_input")
 button = Button(label="Draw!", name="myButton")
 
@@ -74,11 +74,8 @@ answer = Div()
 
 button.on_click(b_call)
 
-my_layout = layout([
-  [column(int_input, slope_input, var_input)],
-  [column(button, answer, p)]
-], name="lays")
 
-curdoc().add_root(my_layout)
-b2 = row(Button(label="Another one"), sizing_mode='stretch_width', name='myrow')
-curdoc().add_root(b2)
+user_input = row(column(int_input, slope_input, var_input), sizing_mode="stretch_width", name='inp')
+plot_int = column(button, answer, p, sizing_mode="stretch_width", name='plot')
+curdoc().add_root(user_input)
+curdoc().add_root(plot_int)
