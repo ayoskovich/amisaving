@@ -1,43 +1,9 @@
 /* amisaving styles */
 
-h1 {
-  color: white;
-}
-
-body {
-  background-color: white;
-}
-
 main {
-  background-color: gray;
-  font-family: Arial, Helvetica, sans-serif;
-  padding: .5em;
-  border-radius: 2em 0 2em 0;
+  padding: 1em;
 }
 
 #summary {
   font-style: italic;  
-}
-
-#instructions {
-  font-weight: bold;
-}
-
-#solution {
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid red;
-  text-align: center;
-}
-
-
-/* Tablets */
-@media only screen and (min-width: 660px) {
-
-}
-
-
-/* Desktops */
-@media only screen and (min-width: 830px) {
-
 }
