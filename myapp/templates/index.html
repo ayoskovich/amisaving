@@ -27,16 +27,14 @@
   <body>
     <p> Here is a sentence </p>
     {% block inner_body %}
+
       {% block contents %}
-        {% for doc in docs %}
-          {{ embed(doc) if doc.elementid }}
-          {% for root in doc.roots %}
-            {% block root scoped %}
-              {{ embed(root) | indent(10) }}
-            {% endblock %}
-          {% endfor %}
-        {% endfor %}
+      <div>
+        {{ embed(roots.hehe) }}
+        {{ embed(roots.main_fig) }}
+      </div>
       {% endblock %}
+
       {{ plot_script | indent(8) }}
     {% endblock %}
     <p> Here is the end of the document </p>

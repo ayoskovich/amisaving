@@ -20,7 +20,7 @@ PAGE_WIDTH = 800
 # create a plot and style its properties
 p = figure(title="Cost Comparison", x_range=(0, 1000), y_range=(0, 1000), 
            tools = "wheel_zoom, pan, reset", toolbar_location="right",
-           plot_width=PAGE_WIDTH, plot_height=400)
+           plot_width=PAGE_WIDTH, plot_height=400, name="main_fig")
 
 p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
@@ -79,4 +79,9 @@ my_layout = layout([
   [column(button, answer, p)]
 ])
 
-curdoc().add_root(my_layout)
+vale = figure(name='hehe')
+vale.circle([1,2], [3,4])
+
+curdoc().add_root(p)
+curdoc().add_root(vale)
+
