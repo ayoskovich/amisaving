@@ -2,7 +2,7 @@ from choice import Choice
 import numpy as np
 
 from bokeh.models import ColumnDataSource, Span, Div, Range1d
-from bokeh.layouts import column, layout
+from bokeh.layouts import column, layout, row
 from bokeh.models import Button, TextInput
 from bokeh.plotting import figure, curdoc
 from bokeh.embed import components
@@ -80,3 +80,5 @@ my_layout = layout([
 ], name="lays")
 
 curdoc().add_root(my_layout)
+b2 = row(Button(label="Another one"), sizing_mode='stretch_width', name='myrow')
+curdoc().add_root(b2)
