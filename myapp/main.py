@@ -30,9 +30,14 @@ p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
 eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)
 
-slope_input = TextInput(value="1", title="Cost per unit with equipment:")
-var_input = TextInput(value="3", title="Cost per unit without equipment:")
-int_input = TextInput(value="60", title="Cost of equipment:", name="int_input")
+slope_input = TextInput(value="1", sizing_mode="stretch_width", name="slope_input")
+var_input = TextInput(value="3", sizing_mode="stretch_width",name="var_input")
+int_input = TextInput(value="60", sizing_mode="stretch_width", name="int_input")
+
+curdoc().add_root(slope_input)
+curdoc().add_root(var_input)
+curdoc().add_root(int_input)
+
 button = Button(label="Draw!", name="myButton")
 
 
@@ -73,9 +78,7 @@ answer = Div()
 button.on_click(b_call)
 
 
-user_input = row(column(int_input, slope_input, var_input), sizing_mode="stretch_width", name='inp')
 plot_int = column(button, answer, p, sizing_mode="stretch_width", name='plot')
-curdoc().add_root(user_input)
 curdoc().add_root(plot_int)
 
 curdoc().title = "Am I Saving?"

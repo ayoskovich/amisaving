@@ -16,10 +16,9 @@ main {
   font-size: 1em;
 }
 
-#summary {
-  font-style: italic;  
+.alert p {
+  margin-bottom: 0;
 }
-
 
 @media only screen and (min-width: 660px) {
   main {
