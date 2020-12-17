@@ -15,8 +15,6 @@ df = ColumnDataSource(data={'x':x_vals,
                             'y2':y_vals.copy()
 })
 
-PAGE_WIDTH = 800
-
 # create a plot and style its properties
 p = figure(title="Cost Comparison", x_range=(0, 1000), y_range=(0, 1000), 
            tools = "wheel_zoom, pan, reset", toolbar_location="right",
@@ -79,3 +77,5 @@ user_input = row(column(int_input, slope_input, var_input), sizing_mode="stretch
 plot_int = column(button, answer, p, sizing_mode="stretch_width", name='plot')
 curdoc().add_root(user_input)
 curdoc().add_root(plot_int)
+
+curdoc().title = "Am I Saving?"

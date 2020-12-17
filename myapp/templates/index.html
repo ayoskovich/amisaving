@@ -4,12 +4,14 @@
 <html lang="en">
   {% block head %}
   <head>
-    <link rel="stylesheet" href="myapp/static/css/styles.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="myapp/static/css/styles.css"/> 
     <!-- Here's a quick lil comment -->
     {% block inner_head %}
       <meta charset="utf-8">
       <title>{% block title %}{{ title | e if title else "Bokeh Plot" }}{% endblock %}</title>
-
 
       {% block preamble %}{% endblock %}
       {% block resources %}
@@ -28,9 +30,12 @@
   {% block body %}
   <body>
     <main>
-        <h1>Am I saving?</h1>
-        <h3>Should I invest in equipment to brew coffee at home, or is it cheaper to just buy coffee at Starbucks? Should I purchase a car or Uber everywhere? This calculator is meant to help you make these types of decisions.</h3>
+        <h1><span class="badge rounded-pill bg-success">Am I saving?</span></h1>
+        <p class="lead">Should I invest in equipment to brew coffee at home, or is it cheaper to just buy coffee at Starbucks? Should I purchase a car or Uber everywhere? This calculator is meant to help you make these types of decisions.</p>
 
+	<hr>
+
+        <div class="alert alert-secondary" rolw="alert">
         <p>Let's focus on the coffee example. I have 2 options:</p>
         <ol>
           <li>Purchase equipment and brew at home.</li>
@@ -39,40 +44,35 @@
         <p>
         For option 1, I would need to buy things like a kettle, a french press, and maybe some filters (let's say this all costs $60). Then, for each additional cup of coffee my only cost would be the coffee beans themselves (let's say $1 per cup). For option 2, I spend $0 on equipment but need to pay Starbucks for each cup of coffee (let's say $3). 
         </p>
+	</div>
 
-        <div id="summary">
-          <p>That's a lot of words! In summary...</p>  
-          <ul>
-            <li>Cost of equipment: The $60 I would spend on coffee equipment (filters, coffee machine, kettle, etc.).</li>
-            <li>Cost per unit with equipment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
-            <li>Cost per unit without equipment: The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
-          </ul>
-        </div>
+        <div class="alert alert-secondary" rolw="alert">
+        <p>That's a lot of words! In summary...</p>  
+        <ul>
+          <li>Cost of equipment: The $60 I would spend on coffee equipment (filters, coffee machine, kettle, etc.).</li>
+          <li>Cost per unit with equipment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
+          <li>Cost per unit without equipment: The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
+        </ul>
+	</div>
 
-        <div id="instructions">
+        <div class="alert alert-primary" role="alert">
         Click the 'Draw!' button below to compare these two options! (If you'd like to autopopulate the numbers from the coffee example, simply refresh the page.) 
-
-        </div>
-
-        <!-- Input fields --> 
-        <!-- Draw button --> 
-
-        <div id="solution">
-        You'll save money by not spending it.
         </div>
 
 
     {% block inner_body %}
       {% block contents %}
+      <div class="alert alert-secondary" role="alert">
       <div>
         {{ embed(roots.inp) }}
         {{ embed(roots.plot) }}
+      </div>
       </div>
       {% endblock %}
 
       {{ plot_script | indent(8) }}
     {% endblock %}
-    <p> Here is the end of the document </p>
+
   </main>
   </body>
   {% endblock %}
