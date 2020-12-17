@@ -4,6 +4,10 @@ h1 {
   text-align: center;
 }
 
+.bg-success {
+  background-color: #7391C8 !important;
+}
+
 main {
   padding: 1em;
 }
