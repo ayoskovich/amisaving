@@ -27,9 +27,21 @@ class Choice:
     @classmethod
     def when_equal(cls, a, b):
         """ Compare 2 choices. """
+
+        # Equal slopes
+        if a.slope == b.slope:
+
+          # Same intercepts too
+          if (a.inter==0 and b.inter==00):
+            return {'sol':{'x':0, 'y':0}, 
+                    'descr':'<p class="sol">Choices are the exact same, follow your heart!</p'}
+
+          return {'sol':{'x':0, 'y':0}, 
+                  'descr':f'<p class="sol">You always save money without purchasing equipment.</p'}
+
         solution = solve(Eq(a.eq, b.eq))
 
-        if (len(solution) > 1) | (len(solution) == 0):
+        if (len(solution) != 1):
             raise ValueError('Rut ro...')
 
         sol = float(solution[0])  # xval
@@ -37,12 +49,14 @@ class Choice:
         x = symbols('x')
         yval = float(a.eq.subs(x, sol))
 
-        # Massive brain play right here
         big = max([a,b], key=attrgetter('slope'))
         small = min([a,b], key=attrgetter('slope'))
 
-        descr =  f'<p>Before {round(sol, 2)} purchases, you save money by {big.name}. '
-        descr += f'After {round(sol)} purchases, you save money by {small.name}.</p>'
+        if sol <= 0:
+          descr = f'<p class="sol">You always save money with {small.name}</p>'
+        else:
+          descr =  f'<p class="sol">Before {round(sol, 2)} purchases, you save money by {big.name}. '
+          descr += f'<br>After {round(sol)} purchases, you save money by {small.name}.</p>'
 
         return {'sol':{'x':sol, 'y':yval}, 
                 'descr':descr}
