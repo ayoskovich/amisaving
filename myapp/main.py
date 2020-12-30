@@ -24,14 +24,15 @@ p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
 
 wid = 2
-p.line(x='x', y='y', line_width=wid, color="red", source=df)
-p.line(x='x', y='y2', line_width=wid, color="blue", source=df)
+p.line(x='x', y='y', line_width=wid, color="red", legend_label="Cost when buying equipment", source=df)
+p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without equipment", source=df)
+
 
 eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)
 
 slope_input = TextInput(value="1", sizing_mode="stretch_width", name="slope_input")
-var_input = TextInput(value="3", sizing_mode="stretch_width",name="var_input")
+var_input = TextInput(value="3", sizing_mode="stretch_width", name="var_input")
 int_input = TextInput(value="60", sizing_mode="stretch_width", name="int_input")
 
 curdoc().add_root(slope_input)
