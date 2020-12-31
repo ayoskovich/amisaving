@@ -56,20 +56,20 @@
         </ul>
 	</div>
 
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-success" role="alert">
         Click the 'Draw!' button below to compare these two options! (If you'd like to autopopulate the numbers from the coffee example, simply refresh the page.) 
         </div>
 
 
     {% block inner_body %}
       {% block contents %}
-        <div class="alert alert-danger" role="alert" style="float: left; width: 50%;">
+        <div class="alert alert-primary" role="alert" style="float: left; width: 50%;">
           <h4 class="alert-heading">The situation where you don't buy any equipment.</h4>
           <hr>
           <p>Cost per unit </p>
           {{ embed(roots.var_input) }}
         </div>
-        <div class="alert alert-success" role="alert" style="float: left; width: 50%;">
+        <div class="alert alert-danger" role="alert" style="float: left; width: 50%;">
           <h4 class="alert-heading">The situation where you do buy equipment.</h4>
           <hr>
           <p>Cost per unit </p>

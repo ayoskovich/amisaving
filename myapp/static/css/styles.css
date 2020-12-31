@@ -25,6 +25,7 @@ main {
   font-size: 2em;
 }
 
+
 @media only screen and (min-width: 660px) {
   main {
     margin-left: auto;
