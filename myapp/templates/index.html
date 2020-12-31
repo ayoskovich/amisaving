@@ -63,15 +63,23 @@
 
     {% block inner_body %}
       {% block contents %}
-      <div class="alert alert-secondary" role="alert">
-        <p>Cost per unit with equipment</p>
-        {{ embed(roots.slope_input) }}
-        <p>Cost per unit without equipment</p>
-        {{ embed(roots.var_input) }}
-        <p>Cost of equipment</p>
-        {{ embed(roots.int_input) }}
+        <div class="alert alert-danger" role="alert">
+          <h4 class="alert-heading">The situation where you don't buy any equipment.</h4>
+          <hr>
+          <p>Cost per unit </p>
+          {{ embed(roots.var_input) }}
+        </div>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">The situation where you do buy equipment.</h4>
+          <hr>
+          <p>Cost per unit </p>
+          {{ embed(roots.slope_input) }}
+          <p>Cost of equipment</p>
+          {{ embed(roots.int_input) }}
+        </div>
+        <div class="alert alert-secondary" role="alert">
         {{ embed(roots.plot) }}
-      </div>
+        </div>
       {% endblock %}
 
       {{ plot_script | indent(8) }}
