@@ -63,13 +63,14 @@
 
     {% block inner_body %}
       {% block contents %}
-        <div class="alert alert-primary" role="alert" style="float: left; width: 50%;">
+      <div class="parent">
+        <div class="alert alert-primary child" role="alert">
           <h4 class="alert-heading">The situation where you don't buy any equipment.</h4>
           <hr>
           <p>Cost per unit </p>
           {{ embed(roots.var_input) }}
         </div>
-        <div class="alert alert-danger" role="alert" style="float: left; width: 50%;">
+        <div class="alert alert-danger child" role="alert">
           <h4 class="alert-heading">The situation where you do buy equipment.</h4>
           <hr>
           <p>Cost per unit </p>
@@ -77,6 +78,8 @@
           <p>Cost of equipment</p>
           {{ embed(roots.int_input) }}
         </div>
+      </div> <!-- End container -->
+
         <div class="alert alert-secondary" role="alert" style="clear: left;">
         {{ embed(roots.plot) }}
         </div>
