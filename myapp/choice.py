@@ -59,4 +59,6 @@ class Choice:
           descr += f'<br>After {round(sol)} purchases, you save money by {small.name}.</p>'
 
         return {'sol':{'x':sol, 'y':yval}, 
-                'descr':descr}
+                'descr':descr,
+                'bef':f'You save money when {big.name}',
+                'aft':f'You save money when {small.name}'}

@@ -3,7 +3,7 @@ import numpy as np
 
 from bokeh.models import ColumnDataSource, Span, Div, Range1d
 from bokeh.layouts import column, layout, row
-from bokeh.models import Button, TextInput
+from bokeh.models import Button, TextInput, BoxAnnotation, Label
 from bokeh.plotting import figure, curdoc
 from bokeh.embed import components
 
@@ -20,6 +20,14 @@ p = figure(title="Cost Comparison", x_range=(0, 1000), y_range=(0, 1000),
            tools = "wheel_zoom, pan, reset", toolbar_location="right",
            name="main_fig")
 
+# Region Highlighting
+AL = .15
+left_box = BoxAnnotation(fill_color='yellow', fill_alpha=AL)
+right_box = BoxAnnotation(fill_color='green', fill_alpha=AL)
+
+left_lab = Label()
+right_lab = Label()
+
 p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
 
@@ -29,7 +37,13 @@ p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without e
 
 
 eq_solve = Span(location=0, dimension='height', line_width=2)
+
+
+p.add_layout(left_box)
+p.add_layout(right_box)
 p.add_layout(eq_solve)
+p.add_layout(left_lab)
+p.add_layout(right_lab)
 
 slope_input = TextInput(value="1", sizing_mode="stretch_width", name="slope_input")
 var_input = TextInput(value="3", sizing_mode="stretch_width", name="var_input")
@@ -60,6 +74,7 @@ def b_call(event):
       diff = Choice.when_equal(a, b)
       BUF = 10
       SOL = diff['sol']['x']
+      SOLY = diff['sol']['y']
       eq_solve.location = SOL
       answer.text = diff['descr']
 
@@ -68,6 +83,17 @@ def b_call(event):
 
       p.y_range.start = diff['sol']['y'] - BUF
       p.y_range.end = diff['sol']['y'] + BUF
+
+      left_box.right = SOL
+      right_box.left = SOL 
+
+      left_lab.text = diff['bef']
+      left_lab.x = SOL - 5
+      left_lab.y = SOLY + 5
+
+      right_lab.text = diff['aft']
+      right_lab.x = SOL + 5
+      right_lab.y = SOLY - 5
 
     except ValueError:
       eq_solve.location = 0
