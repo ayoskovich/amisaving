@@ -27,17 +27,9 @@ main {
 
 /* Side by side user input */
 .parent {
-    display: flex;
+  display: flex;
+  justify-content: center;
 }
 .child {
-    flex-grow: 1;
-    flex-basis: 33%;
-}
-
-@media only screen and (min-width: 660px) {
-  main {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-  }
+  flex-basis: 50%;
 }

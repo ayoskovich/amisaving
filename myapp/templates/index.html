@@ -43,21 +43,22 @@
           <li>Don't buy any equipment and purchase a cup of coffee at Starbucks.</li>
         </ol>
         <p>
-        For option 1, I would need to buy things like a kettle, a french press, and maybe some filters (let's say this all costs $60). Then, for each additional cup of coffee my only cost would be the coffee beans themselves (let's say $1 per cup). For option 2, I spend $0 on equipment but need to pay Starbucks for each cup of coffee (let's say $3). 
+        For option 1, I would need to buy things like a kettle, a french press, and maybe some filters. For each additional cup of coffee the only cost would be the coffee beans themselves. </p>
+        <p>
+        For option 2, I buy any equipment but need to pay Starbucks for each cup of coffee. 
         </p>
-	</div>
+        <hr>
 
-        <div class="alert alert-secondary" rolw="alert">
         <p>That's a lot of words! In summary...</p>  
         <ul>
           <li>Cost of equipment: The $60 I would spend on coffee equipment (filters, coffee machine, kettle, etc.).</li>
-          <li>Cost per unit with equipment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
-          <li>Cost per unit without equipment: The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
+          <li>Cost per unit with investment in equipment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
+          <li>Cost per unit without investment equipment: The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
         </ul>
 	</div>
 
-        <div class="alert alert-success" role="alert">
-        Click the 'Draw!' button below to compare these two options! (If you'd like to autopopulate the numbers from the coffee example, simply refresh the page.) 
+        <div class="alert alert-secondary" role="alert">
+        The below fields allow you to enter your own numbers.
         </div>
 
 
@@ -65,13 +66,13 @@
       {% block contents %}
       <div class="parent">
         <div class="alert alert-primary child" role="alert">
-          <h4 class="alert-heading">The situation where you don't buy any equipment.</h4>
+          <h4 class="alert-heading">Cost without investment.</h4>
           <hr>
           <p>Cost per unit </p>
           {{ embed(roots.var_input) }}
         </div>
         <div class="alert alert-danger child" role="alert">
-          <h4 class="alert-heading">The situation where you do buy equipment.</h4>
+          <h4 class="alert-heading">Costs with investment.</h4>
           <hr>
           <p>Cost per unit </p>
           {{ embed(roots.slope_input) }}
@@ -79,6 +80,9 @@
           {{ embed(roots.int_input) }}
         </div>
       </div> <!-- End container -->
+        <div class="alert alert-success" role="alert">
+        Click the 'Draw!' button below to compare the two options. To populate the numbers from the coffee example, simply refresh the page. 
+        </div>
 
         <div class="alert alert-secondary" role="alert" style="clear: left;">
         {{ embed(roots.plot) }}
