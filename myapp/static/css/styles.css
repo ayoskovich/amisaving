@@ -25,19 +25,13 @@ main {
   font-size: 2em;
 }
 
-/* Side by side user input */
-.parent {
-    display: flex;
+.float-left {
+  float: left;
+  height: 250px;
+  width: 100%;
 }
-.child {
-    flex-grow: 1;
-    flex-basis: 33%;
-}
-
-@media only screen and (min-width: 660px) {
-  main {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-  }
+.inn-cent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

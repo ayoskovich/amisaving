@@ -1,33 +1,15 @@
-{% from macros import embed %}
-
 <!DOCTYPE html>
 <html lang="en">
-  {% block head %}
   <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="myapp/static/css/styles.css"/> 
-    <!-- Here's a quick lil comment -->
-    {% block inner_head %}
+    <link rel="stylesheet" href="/home/anthony/amisaving/myapp/static/css/styles.css"/> 
       <meta charset="utf-8">
-      <title>{% block title %}{{ title | e if title else "Bokeh Plot" }}{% endblock %}</title>
+      <title></title>
 
-      {% block preamble %}{% endblock %}
-      {% block resources %}
-        {% block css_resources %}
-          {{ bokeh_css | indent(8) if bokeh_css }}
-        {% endblock %}
-        {% block js_resources %}
-          {{ bokeh_js | indent(8) if bokeh_js }}
-        {% endblock %}
-      {% endblock %}
-      {% block postamble %}{% endblock %}
-    {% endblock %}
   </head>
-  {% endblock %}
 
-  {% block body %}
   <body>
     <main>
         <h1><span class="badge rounded-pill bg-success">Am I Saving?</span></h1>
@@ -55,45 +37,36 @@
           <li>Cost per unit with investment in equipment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
           <li>Cost per unit without investment equipment: The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
         </ul>
-        <p>Use the below fields to enter your own numbers!</p>
 	</div>
 
-
-    {% block inner_body %}
-      {% block contents %}
+        <div class="alert alert-secondary" role="alert">
+        The below fields allow you to enter your own numbers.
+        </div>
 
       <div class="inn-cent">
-      <div class="alert alert-primary float-left" role="alert">
-        <h4 class="alert-heading">Cost without investment.</h4>
-        <hr>
-        <p>Cost per unit </p>
-        {{ embed(roots.var_input) }}
-      </div>
-      <div class="alert alert-danger float-left" role="alert">
-        <h4 class="alert-heading">Costs with investment.</h4>
-        <hr>
-        <p>Cost per unit </p>
-        {{ embed(roots.slope_input) }}
-        <p>Cost of equipment</p>
-        {{ embed(roots.int_input) }}
-      </div>
-      </div> <!-- End of inn-cent -->
+        <div class="alert alert-primary float-left" role="alert">
+          <h4 class="alert-heading">Cost without investment.</h4>
+          <hr>
+          <p>Cost per unit </p>
+        </div>
+        <div class="alert alert-danger float-left" role="alert">
+          <h4 class="alert-heading">Costs with investment.</h4>
+          <hr>
+          <p>Cost per unit </p>
+          <p>Cost of equipment</p>
+        </div>
+      </div> <!-- End inn-cent -->
 
-
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-success" role="alert" style="clear: left;">
         Click the 'Draw!' button below to compare the two options. To populate the numbers from the coffee example, simply refresh the page. 
       </div>
 
-        <div class="alert alert-secondary" role="alert" style="clear: left;">
-        {{ embed(roots.plot) }}
-        </div>
-      {% endblock %}
+      <div class="alert alert-secondary" role="alert">
+        Main plot here.
+      </div>
 
-      {{ plot_script | indent(8) }}
-    {% endblock %}
 
   </main>
   </body>
-  {% endblock %}
 
 </html>
