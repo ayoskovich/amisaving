@@ -24,8 +24,8 @@ p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
 
 wid = 2
-p.line(x='x', y='y', line_width=wid, color="red", legend_label="Cost when buying equipment", source=df)
-p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without equipment", source=df)
+p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without investment.", source=df)
+p.line(x='x', y='y', line_width=wid, color="red", legend_label="Cost with investment.", source=df)
 
 
 eq_solve = Span(location=0, dimension='height', line_width=2)
@@ -46,8 +46,8 @@ def b_call(event):
     """
     Button functionality stuff
     """
-    a = Choice('purchasing equipment', slope_input.value, int_input.value)
-    b = Choice('not purchasing equipment', var_input.value)
+    a = Choice('investing', slope_input.value, int_input.value)
+    b = Choice('not investing', var_input.value)
 
     ALL = slice(len(df.data['x']))
 
