@@ -31,9 +31,9 @@ p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without e
 eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)
 
-slope_input = TextInput(value="1", sizing_mode="scale_width", name="slope_input")
-var_input = TextInput(value="3", sizing_mode="scale_width", name="var_input")
-int_input = TextInput(value="60", sizing_mode="scale_width", name="int_input")
+slope_input = TextInput(value="1", name="slope_input")
+var_input = TextInput(value="3", name="var_input")
+int_input = TextInput(value="60", name="int_input")
 
 curdoc().add_root(slope_input)
 curdoc().add_root(var_input)

@@ -25,11 +25,13 @@ main {
   font-size: 2em;
 }
 
-/* Side by side user input */
-.parent {
+.float-left {
+  float: left;
+  height: 300px;
+  width: 100%;
+}
+.inn-cent {
+  width: 100%;
   display: flex;
   justify-content: center;
-}
-.child {
-  flex-basis: 50%;
 }

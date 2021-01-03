@@ -65,13 +65,14 @@
     {% block inner_body %}
       {% block contents %}
 
-      <div class="alert alert-primary" role="alert">
+      <div class="inn-cent">
+      <div class="alert alert-primary float-left" role="alert">
         <h4 class="alert-heading">Cost without investment.</h4>
         <hr>
         <p>Cost per unit </p>
         {{ embed(roots.var_input) }}
       </div>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger float-left" role="alert">
         <h4 class="alert-heading">Costs with investment.</h4>
         <hr>
         <p>Cost per unit </p>
@@ -79,6 +80,9 @@
         <p>Cost of equipment</p>
         {{ embed(roots.int_input) }}
       </div>
+      </div> <!-- End of inn-cent -->
+
+
       <div class="alert alert-success" role="alert">
         Click the 'Draw!' button below to compare the two options. To populate the numbers from the coffee example, simply refresh the page. 
       </div>
