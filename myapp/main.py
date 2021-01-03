@@ -24,9 +24,8 @@ p.xaxis.axis_label = "# of units purchased"
 p.yaxis.axis_label = "Total Cost"
 
 wid = 2
-p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without investment.", source=df)
-p.line(x='x', y='y', line_width=wid, color="red", legend_label="Cost with investment.", source=df)
-
+p.line(x='x', y='y', line_width=wid, color="red", legend_label="Cost with investment", source=df)
+p.line(x='x', y='y2', line_width=wid, color="blue", legend_label="Cost without investment", source=df)
 
 eq_solve = Span(location=0, dimension='height', line_width=2)
 p.add_layout(eq_solve)

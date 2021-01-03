@@ -56,7 +56,7 @@ class Choice:
           descr = f'<p class="sol">You always save money with {small.name}</p>'
         else:
           descr =  f'<p class="sol">Before {round(sol, 2)} purchases, you save money by {big.name}. '
-          descr += f'<br>After {round(sol)} purchases, you save money by {small.name}.</p>'
+          descr += f'<br>After {round(sol, 2)} purchases, you save money by {small.name}.</p>'
 
         return {'sol':{'x':sol, 'y':yval}, 
                 'descr':descr}
