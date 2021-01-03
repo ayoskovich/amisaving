@@ -2,8 +2,8 @@
 
 This is an interactive tool that is meant to help people make cost saving decisions about whether to invest in equipment. Equipment could be lots of different things, like at home coffee setups, a car, or maybe renting vs buying a tool.
 
-The project uses mostly python, along with some some html and css. The interactive part is driven by bokeh.
+The project uses mostly python, along with some some html and css. The interactive part is driven by bokeh and I deployed it using heroku.
 
-Click [here](https://amisaving.herokuapp.com/myapp) in order to see it live in action! Or view the screenshot below:
+Click [here](http://www.amisaving.com/myapp) in order to see it live in action! Or view the screenshot below:
 
-![an image of the app](amisaving_v1.png)
+![an image of the app](history/ams_1-3-21.png)
