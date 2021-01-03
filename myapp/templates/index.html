@@ -45,14 +45,14 @@
         <p>
         For option 1, I would need to buy things like a kettle, a french press, and maybe some filters. For each additional cup of coffee the only cost would be the coffee beans themselves. </p>
         <p>
-        For option 2, I buy any equipment but need to pay Starbucks for each cup of coffee. 
+        For option 2, I don't buy any equipment, but need to pay Starbucks for each cup of coffee. 
         </p>
         <hr>
 
-        <p>That's a lot of words! In summary...</p>  
+        <p>Let's define a few terms and add concrete numbers: </p>  
         <ul>
-          <li>Cost of equipment: The $60 I would spend on coffee equipment (filters, coffee machine, kettle, etc.).</li>
-          <li>Cost per unit with investment in equipment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
+          <li>Cost per unit with investment: The $1 I need to spend for each cup of coffee, if I buy equipment.</li>
+          <li>Cost of equipment with investment: The $60 I would spend on coffee equipment (filters, coffee machine, kettle, etc.).</li>
           <li>Cost per unit without investment equipment: The $3 I need to spend for each cup of coffee I'd buy at Starbucks.</li>
         </ul>
         <p>Use the below fields to enter your own numbers!</p>
@@ -63,19 +63,19 @@
       {% block contents %}
 
       <div class="inn-cent">
-      <div class="alert alert-primary float-left" role="alert">
-        <h4 class="alert-heading">Cost without investment.</h4>
-        <hr>
-        <p>Cost per unit </p>
-        {{ embed(roots.var_input) }}
-      </div>
       <div class="alert alert-danger float-left" role="alert">
-        <h4 class="alert-heading">Costs with investment.</h4>
+        <h4 class="alert-heading">Costs with investment</h4>
         <hr>
         <p>Cost per unit </p>
         {{ embed(roots.slope_input) }}
         <p>Cost of equipment</p>
         {{ embed(roots.int_input) }}
+      </div>
+      <div class="alert alert-primary float-left" role="alert">
+        <h4 class="alert-heading">Cost without investment</h4>
+        <hr>
+        <p>Cost per unit </p>
+        {{ embed(roots.var_input) }}
       </div>
       </div> <!-- End of inn-cent -->
 
